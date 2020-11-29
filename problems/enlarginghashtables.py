@@ -1,13 +1,25 @@
 import math
 ins = []
-i = 0
-def generatePrimes(n):
-  primes = [True] * (2*(n+1))
-  for p in range(2, n+1):
-    if (primes[p]):
-      for i in range(p, n+1, p):
-        primes[i] = False
-  return primes
+def near(n):
+    prime_near = 0
+    for i in range(n+1,2*n):
+        for j in range(2,int(math.sqrt(i))+1):
+            if i % j == 0:
+                break
+        else:
+            prime_near = i
+            break
+    return prime_near
+def isPrime(n):
+    if n > 1:
+        for i in range(2,int(math.sqrt(n))+1):
+            if n % i == 0:
+                return False
+                break
+        else:
+            return True
+    else:
+        return False
 
 while True:
     k = int(input())
@@ -16,15 +28,9 @@ while True:
     else:
         ins.append(k)
 
-allPrimes = generatePrimes(max(ins))
-print(ins)
-
 for i in ins:
-    if 2*i >= 6:
-        factor = round(2*i/6)
-        if allPrimes[factor*6 + 1]:
-            print(factor*6 + 1)
-        elif allPrimes[factor*6 - 1]:
-            print(factor*6 - 1)
-        else:
-            factor += 1
+    ct = near(2*i)
+    if isPrime(i):
+        print(ct)
+    else:
+        print(str(ct) + " (" + str(i) + " is not prime)")
