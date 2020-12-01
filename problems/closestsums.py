@@ -1,10 +1,8 @@
 
 import fileinput
 k = []
-
 for line in fileinput.input():
     k.append(int(line))
-
 r = 0
 n,m = k[0],k[k[0]+1]
 r = n+m
