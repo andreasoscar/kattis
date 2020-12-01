@@ -6,16 +6,17 @@ while True:
     if n == 0 and t == 0:
         break
     else:
-        i_t = []
-        for j in range(0,100000):
-            money = 1
+        e = []
+        for j in range(0,10):
+            tc = 1
             for i in range(0,int(n)):
                 p = random.uniform(t,1)
-                if 1-p > p:
-                    break
-                else:
-                    money = money*2*p
-            i_t.append(money)
-        cases.append(sum(i_t)/len(i_t))
+                tc = tc*p
+                print(tc,i,2**i)
+            e.append(tc*(2**(int(n)+1)))
+        else:
+            cases.append(e)
+
 for i in cases:
-    print(round(i,3))
+    print(i)
+        #print(sum)
