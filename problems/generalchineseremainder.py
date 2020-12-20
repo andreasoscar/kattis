@@ -3,7 +3,6 @@ eq = []
 for q in range(T):
     a1,n1,b1,m1 = [int(x) for x in input().split()]
     eq.append([(a1,n1),(b1,m1)])
-print(eq)
 def gcd(x,y):
     if y == 0:
         return x
@@ -17,25 +16,19 @@ def euclides_extended_algorithm(z,n):
     t2 = z1
     return t1,t2
 def remainder(a):
+    a0,a1 = a[0],a[1]
     N = 1
-    if gcd(a[0][1],a[1][1]) != 1:
+    g =  gcd(a0[1],a1[1])
+    if a0[0] % g != a1[0] % g:
         return "no solution"
     else:
-        ai,yi,zi,m = [],[],[],[]
-        for i in a:
-            N = N * i[1]
-            ai.append(i[0])
-            m.append(i[1])
-        for i in a:
-            yi.append(N//i[1])
-        for i in range(len(m)):
-            inverse = euclides_extended_algorithm(yi[i],m[i])[0]
-            zi.append(inverse%m[i])
-        sum = 0
-        for z in range(len(zi)):
-            sum += ai[z]*yi[z]*zi[z]
-        return sum%N,(abs(a[0][0]*a[1][1])/gcd(a[0][1],a[1][1]))
+        z = a0[1] / g*a1[1]
+        p,q = euclides_extended_algorithm(a0[1]/g,a1[1]/g)
+        y = (a0[0]*(a1[1]*g)*q + a1[0]*(a0[1]/g)*p) % z
+        return y%z,z
 for i in eq:
     rem = remainder(i)
-    print(rem)
-    #print(str(rem[0]) + " " + str(rem[1]))
+    if len(rem) > 2:
+        print(rem)
+    else:
+        print(str(int(rem[0])) + " " + str(int(rem[1])))
