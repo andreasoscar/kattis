@@ -19,7 +19,6 @@ def euclides_extended_algorithm(z,n):
 def remainder(a,n):
     a1,a2,n1,n2 = a[0],a[1],n[0],n[1]
     g = gcd(n1,n2)
-    #print(g)
     if a1%g != a2%g:
         print("no solution")
     else:
