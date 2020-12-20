@@ -1,8 +1,9 @@
 T = int(input())
-eq = []
+ai,ni = [],[]
 for q in range(T):
-    a1,n1,b1,m1 = [int(x) for x in input().split()]
-    eq.append([(a1,n1),(b1,m1)])
+    a1,n1,a2,n2 = [int(x) for x in input().split()]
+    ai.append([a1,a2])
+    ni.append([n1,n2])
 def gcd(x,y):
     if y == 0:
         return x
@@ -15,20 +16,16 @@ def euclides_extended_algorithm(z,n):
     t1 = n1 - (n//z) * z1
     t2 = z1
     return t1,t2
-def remainder(a):
-    a0,a1 = a[0],a[1]
-    N = 1
-    g =  gcd(a0[1],a1[1])
-    if a0[0] % g != a1[0] % g:
-        return "no solution"
+def remainder(a,n):
+    a1,a2,n1,n2 = a[0],a[1],n[0],n[1]
+    g = gcd(n1,n2)
+    #print(g)
+    if a1%g != a2%g:
+        print("no solution")
     else:
-        z = a0[1] / g*a1[1]
-        p,q = euclides_extended_algorithm(a0[1]/g,a1[1]/g)
-        y = (a0[0]*(a1[1]*g)*q + a1[0]*(a0[1]/g)*p) % z
-        return y%z,z
-for i in eq:
-    rem = remainder(i)
-    if len(rem) > 2:
-        print(rem)
-    else:
-        print(str(int(rem[0])) + " " + str(int(rem[1])))
+        u,v= euclides_extended_algorithm(n1//g,n2//g)
+        w = n1//g * n2
+        x = (a1*(n2//g)*v + a2*(n1//g)*u)%w
+        print(x%w,w)
+for i in range(len(ai)):
+    remainder(ai[i],ni[i])
