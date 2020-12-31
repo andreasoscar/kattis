@@ -1,11 +1,14 @@
 from collections import Counter
+from itertools import permutations
 N,t = [int(y) for y in input().split()]
 A = [int(y) for y in input().split()]
 if t == 1:
     s = "No"
+    A = set(A)
     for i in A:
-        if i + 7777-i == 7777 and i != 7777-i:
+        if 7777-i in A:
             s = "Yes"
+            break
     print(s)
 elif t == 2:
     if len(A) == len(set(A)):
@@ -16,7 +19,7 @@ elif t == 3:
     v = -1
     z = Counter(A)
     for i in A:
-        if z[i] > N//2:
+        if z[i] > N/2:
             v = i
             break
     print(v)
@@ -29,5 +32,5 @@ elif t == 4:
 elif t == 5:
     A.sort()
     for i in A:
-        if i >= 100 and i <= 999:
+        if 100 <= i <= 999:
             print(str(i) + " ",end='')
