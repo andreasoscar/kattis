@@ -19,8 +19,3 @@ for j in range(n):
         print("permuted arithmetic")
     else:
         print("non-arithmetic")
-    
-    
-
-
-
