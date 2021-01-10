@@ -1,38 +1,38 @@
 #include <vector>
-#include <sstream>
 #include <iostream>
 #include <list>
+#include <string>
 #include <bits/stdc++.h>
 using namespace std;
-int main()
-{
+int main(){
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  std::vector<int> first;
+  std::vector<int> last;
   int n;
-  cin >> n;
-  list<string> teque;
   string s;
-  getline(cin, s);
-  for(int i = 0; i < n;i++){
-    getline(cin, s);
-    istringstream s2(s);
-    vector<string> v;
-    string tmp;
-    while (s2 >> tmp) {
-      v.push_back(tmp);
+  int n1;
+  cin >> n;
+  while(n > 0){
+    cin >> s >> n1;
+    if(s == "push_back"){
+      last.push_back(n1);
+    } else if(s == "push_front"){
+        first.insert(first.begin(),n1);
+    } else if(s == "push_middle"){
+        if(first.size() == last.size()){
+            first.insert(first.end(),n1);
+        } else if(first.size() >= last.size()){
+            last.insert(last.begin(),n1);
+            //3,5,9 -> 3,5,1,9 -> 3,5,2500,1,9 -> 3,5,2500,1,9,9999 -> 3,5,2500,1,9,9999,250 -> -1,3,5,2500,25000,1,9,9999,250 ->  
+        }
+    } else if(s=="get"){
+      if(n1 < first.size()){
+        cout << first[n1] << endl;
+      } else if(n1 >= first.size() and n1 <(first.size() + last.size())){
+        cout << last[n1-first.size()] << endl;
+      }
     }
-  if(v.front() == "push_back"){
-    teque.push_back(v.back());
-
-  } else if (v.front() == "push_front"){
-    teque.push_front(v.back());
-
-  } else if (v.front() == "push_middle"){
-    std::list<string>::iterator it = teque.begin();
-    std::advance(it, (1+teque.size())/2);
-    teque.insert(it, v.back());
-  } else if (v.front() == "get"){
-    vector<string> vec(teque.begin(), teque.end());
-    cout << vec[std::stoi(v.back())] << endl;
-
+    n -= 1;
   }
- }
 }
