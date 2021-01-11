@@ -1,6 +1,5 @@
 #include <deque>
 #include <iostream>
-#include <list>
 #include <string>
 #include <bits/stdc++.h>
 using namespace std;
@@ -21,7 +20,6 @@ int main(){
         first.push_back(last.front());
         last.pop_front();
       }
-    
     } else if(s == "push_front"){
       first.push_front(n1);
       if(first.size() > (last.size() + 1)){
