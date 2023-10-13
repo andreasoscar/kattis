@@ -1,5 +1,4 @@
 #include<iostream>
-#include <bits/stdc++.h>
 #include <string>
 using namespace std;
 
@@ -10,10 +9,9 @@ int main() {
   int b = 0;
   std::cin >> a >> b;
   if(a > b){
-    std::cout << "1";
+    std::cout << "1" << std::endl;
   }
   else {
-    std::cout << "0";
+    std::cout << "0" << std::endl;
   }
-
 }
